@@ -12,4 +12,3 @@ class PostAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     ordering = ['status', '-publish']
 
-
