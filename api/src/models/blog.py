@@ -52,7 +52,6 @@ class Comment(models.Model):
     name = models.CharField(max_length=255, verbose_name='Name')
     email = models.EmailField(max_length=255, verbose_name='Email')
     body = models.TextField(verbose_name='Body')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
     updated = models.DateTimeField(auto_now=True, verbose_name='Updated at')
     active = models.BooleanField(default=True, verbose_name='Active')
