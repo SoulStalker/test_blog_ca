@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from src.models.blog import Post
 
-from api.src.apps.blog.forms import EmailPostForm
-from api.src.config import settings
+from src.apps.blog.forms import EmailPostForm
+from src.config import settings
 
 
 class PostListView(ListView):

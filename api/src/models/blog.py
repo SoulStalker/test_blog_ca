@@ -42,3 +42,27 @@ class Post(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,
+                             on_delete=models.CASCADE,
+                             verbose_name='Post',
+                             related_name='comments')
+    name = models.CharField(max_length=255, verbose_name='Name')
+    email = models.EmailField(max_length=255, verbose_name='Email')
+    body = models.TextField(verbose_name='Body')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Updated at')
+    active = models.BooleanField(default=True, verbose_name='Active')
+
+    class Meta:
+        db_table = 'comments'
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'
+        ordering = ['created']
+        indexes = [models.Index(fields=['created'], name='created_at_idx')]
+
+    def __str__(self):
+        return f"{self.name} on {self.post}"
