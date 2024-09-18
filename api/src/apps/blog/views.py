@@ -8,6 +8,7 @@ from src.apps.blog.forms import EmailPostForm
 from src.config import settings
 
 from src.apps.blog.forms import CommentForm
+# from src.domain.post.service import share_post_via_email
 
 
 class PostListView(ListView):
@@ -51,7 +52,7 @@ def post_share(request, post_id):
             subject = f"Somebody recommends you read {post.title}"
             message = f"Read {post.title} at {post_url}\n\ncomments: {cd['comments']}"
             send_mail(subject, message, settings.EMAIL_HOST_USER, [cd['to']])
-            sent = True
+            sent = share_post_via_email(request, form.cleaned_data['cd'])
 
     else:
         form = EmailPostForm()
@@ -70,7 +71,6 @@ def post_comment(request, post_id):
     if form.is_valid():
         comment = form.save(commit=False)
         comment.post = post
-        # comment.author = request.user
         comment.save()
     return render(request,
                   'blog/post/comment.html',
