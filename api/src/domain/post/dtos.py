@@ -13,19 +13,18 @@ class PostDTO:
 
 
 @dataclass
-class CreateCommentDTO:
+class CommentCreateDTO:
     post: PostDTO
     name: str
     email: str
     body: str
-    active: bool
+    active: bool = True
 
 
 @dataclass
 class CommentDTO:
-    post: PostDTO
+    post: PostDTO  # может int post_id?
     name: str
     email: str
     body: str
     active: bool
-

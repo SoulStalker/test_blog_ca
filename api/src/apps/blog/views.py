@@ -8,6 +8,12 @@ from src.apps.blog.forms import EmailPostForm
 from src.config import settings
 
 from src.apps.blog.forms import CommentForm
+from src.domain.post.service import CommentService
+
+from api.src.apps.blog.repository import CommentRepository
+from api.src.domain.post.dtos import CommentCreateDTO
+
+
 # from src.domain.post.service import share_post_via_email
 
 
@@ -68,10 +74,20 @@ def post_comment(request, post_id):
                              status=Post.Status.PUBLISHED)
     comment = None
     form = CommentForm(request.POST)
+    service = CommentService(CommentRepository())
     if form.is_valid():
-        comment = form.save(commit=False)
-        comment.post = post
-        comment.save()
+        service.create_comment(CommentCreateDTO(
+            post=post_id,  # или получаем PostDTO ?
+            name=form.cleaned_data['name'],
+            email=form.cleaned_data['email'],
+            body=form.cleaned_data['body'],
+        ))
+
+        # comment = form.save(commit=False)
+        # comment.post = post
+        # comment.save()
+        # вот тут мы должны не сохранять форму в базу а отправлять в репозиторий
+
     return render(request,
                   'blog/post/comment.html',
                   {'post': post, 'form': form, 'comment': comment})
