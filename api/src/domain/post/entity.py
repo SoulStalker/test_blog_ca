@@ -10,3 +10,7 @@ class Post:
     author: str  # тут какой тип ?
     publish: datetime
     status: str
+
+
+    # тут можно добавить методы типа
+    # def add_tag_to_post или еще что-то

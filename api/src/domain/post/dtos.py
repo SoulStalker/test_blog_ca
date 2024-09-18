@@ -13,9 +13,19 @@ class PostDTO:
 
 
 @dataclass
+class CreateCommentDTO:
+    post: PostDTO
+    name: str
+    email: str
+    body: str
+    active: bool
+
+
+@dataclass
 class CommentDTO:
     post: PostDTO
     name: str
     email: str
     body: str
     active: bool
+

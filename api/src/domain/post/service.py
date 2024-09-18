@@ -29,8 +29,8 @@ class CommentService:
     def delete_comment(self, pk: int):
         self.repository.delete(pk)
 
-    def get_comments_list(self):
-        return self.repository.get_list()
+    def get_comments_list(self, post_pk: int):
+        return self.repository.get_list(post_pk)
 
     def change_activity(self):
         self.repository.change_activity()

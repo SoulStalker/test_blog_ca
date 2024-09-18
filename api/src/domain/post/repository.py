@@ -19,7 +19,7 @@ class ICommentRepository:
     def delete(self, pk: int) -> None:
         pass
 
-    def get_list(self) -> list[CommentDTO]:
+    def get_list(self, post_id: int) -> list[CommentDTO]:
         pass
 
     def change_activity(self) -> None:
