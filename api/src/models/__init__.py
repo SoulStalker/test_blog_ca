@@ -1,3 +1,3 @@
-# from .blog import Post
+# from api.src.models.blog import Post, Comment
 #
-# __all__ = ['Post']
+# __all__ = ['Post', 'Comment']

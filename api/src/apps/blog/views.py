@@ -2,13 +2,13 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView
-from src.models.blog import Post, Comment
+# from src.models.blog import Post
 
-from src.apps.blog.forms import EmailPostForm
-from src.config import settings
+from api.src.apps.blog.forms import EmailPostForm
+from api.src.config import settings
 
-from src.apps.blog.forms import CommentForm
-from src.domain.post.service import CommentService
+from api.src.apps.blog.forms import CommentForm
+from api.src.domain.post.service import CommentService
 
 from api.src.apps.blog.repository import CommentRepository
 from api.src.domain.post.dtos import CommentCreateDTO
@@ -76,7 +76,7 @@ def post_comment(request, post_id):
     form = CommentForm(request.POST)
     service = CommentService(CommentRepository())
     if form.is_valid():
-        service.create_comment(CommentCreateDTO(
+        service.c(CommentCreateDTO(
             post=post_id,  # или получаем PostDTO ?
             name=form.cleaned_data['name'],
             email=form.cleaned_data['email'],

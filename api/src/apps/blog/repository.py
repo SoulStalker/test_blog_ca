@@ -1,12 +1,12 @@
-from src.domain.blog.repository import ICommentRepository
-from src.models import Comment
-from src.domain.blog.dtos import CreateCommentDTO
+from api.src.domain.post.repository import ICommentRepository
+from api.src.models.blog import Comment
+from api.src.domain.post.dtos import CommentCreateDTO
 
 
 class CommentRepository(ICommentRepository):
     model = Comment
 
-    def add_comment(self, dto: CreateCommentDTO):
+    def create(self, dto: CommentCreateDTO):
         model = self.model(**dto.dict())
         model.save()
 

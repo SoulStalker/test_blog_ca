@@ -23,13 +23,13 @@ class CommentService:
     def __init__(self, repository: ICommentRepository):
         self.repository = repository
 
-    def create_comment(self, dto: CommentDTO):
+    def create(self, dto: CommentDTO):
         self.repository.create(dto)
 
-    def delete_comment(self, pk: int):
+    def delete(self, pk: int):
         self.repository.delete(pk)
 
-    def get_comments_list(self, post_pk: int):
+    def get_list(self, post_pk: int):
         return self.repository.get_list(post_pk)
 
     def change_activity(self):
