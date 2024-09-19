@@ -1,8 +1,11 @@
-from api.src.domain.post.dtos import PostDTO, CommentDTO
+from api.src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
 
 
 class IPostRepository:
-    def create(self, dto: PostDTO) -> PostDTO:
+    def get(self, year, month, day, post) -> PostDTO:
+        pass
+
+    def create(self, dto: PostCreateDTO) -> PostDTO:
         pass
 
     def delete(self, pk: int) -> None:
@@ -13,7 +16,7 @@ class IPostRepository:
 
 
 class ICommentRepository:
-    def create(self, dto: CommentDTO) -> CommentDTO:
+    def create(self, dto: CommentCreateDTO) -> CommentDTO:
         pass
 
     def delete(self, pk: int) -> None:
@@ -22,5 +25,5 @@ class ICommentRepository:
     def get_list(self, post_id: int) -> list[CommentDTO]:
         pass
 
-    def change_activity(self) -> None:
+    def change_activity(self, pk: int) -> None:
         pass

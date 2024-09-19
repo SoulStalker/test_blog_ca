@@ -56,6 +56,8 @@ class Comment(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name='Updated at')
     active = models.BooleanField(default=True, verbose_name='Active')
 
+    objects = models.Manager()
+
     class Meta:
         db_table = 'comments'
         verbose_name = 'Comment'

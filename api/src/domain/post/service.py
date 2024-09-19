@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 
 from api.src.config import settings
-from api.src.domain.post.dtos import PostDTO, CommentDTO
+from api.src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
 from api.src.domain.post.repository import IPostRepository, ICommentRepository
 
 
@@ -9,7 +9,10 @@ class PostService:
     def __init__(self, repository: IPostRepository):
         self.repository = repository
 
-    def create_post(self, dto: PostDTO):
+    def get(self, year, month, day, post):
+        self.repository.get()
+
+    def create_post(self, dto: PostCreateDTO):
         self.repository.create(dto)
 
     def delete_post(self, pk: int):
@@ -23,7 +26,7 @@ class CommentService:
     def __init__(self, repository: ICommentRepository):
         self.repository = repository
 
-    def create(self, dto: CommentDTO):
+    def create(self, dto: CommentCreateDTO):
         self.repository.create(dto)
 
     def delete(self, pk: int):

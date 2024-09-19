@@ -13,6 +13,16 @@ class PostDTO:
 
 
 @dataclass
+class PostCreateDTO:
+    title: str
+    slug: str
+    body: str
+    author: str  # тут какой тип ?
+    publish: datetime
+    status: str
+
+
+@dataclass
 class CommentCreateDTO:
     post: PostDTO
     name: str
@@ -23,7 +33,7 @@ class CommentCreateDTO:
 
 @dataclass
 class CommentDTO:
-    post: PostDTO  # может int post_id?
+    post_id: int  # может int post_id?
     name: str
     email: str
     body: str
