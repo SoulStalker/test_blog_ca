@@ -1,42 +1,39 @@
-from django.core.mail import send_mail
-
-from api.src.config import settings
 from api.src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
 from api.src.domain.post.repository import IPostRepository, ICommentRepository
 
 
 class PostService:
     def __init__(self, repository: IPostRepository):
-        self.repository = repository
+        self.__repository = repository
 
     def get(self, year, month, day, post):
-        self.repository.get()
+        self.__repository.get(year, month, day, post)
 
     def create_post(self, dto: PostCreateDTO):
-        self.repository.create(dto)
+        self.__repository.create(dto)
 
     def delete_post(self, pk: int):
-        self.repository.delete(pk)
+        self.__repository.delete(pk)
 
     def get_posts_list(self):
-        return self.repository.get_list()
+        return self.__repository.get_list()
 
 
 class CommentService:
     def __init__(self, repository: ICommentRepository):
-        self.repository = repository
+        self.__repository = repository
 
     def create(self, dto: CommentCreateDTO):
-        self.repository.create(dto)
+        self.__repository.create(dto)
 
     def delete(self, pk: int):
-        self.repository.delete(pk)
+        self.__repository.delete(pk)
 
     def get_list(self, post_pk: int):
-        return self.repository.get_list(post_pk)
+        return self.__repository.get_list(post_pk)
 
     def change_activity(self):
-        self.repository.change_activity()
+        self.__repository.change_activity()
 
 
 

@@ -8,6 +8,16 @@ from api.src.models.blog import Comment, Post
 class PostRepository(IPostRepository):
     model = Post
 
+    def _post_orm_to_dto(self, post: Post) -> PostDTO:
+        return PostDTO(
+            title=post.title,
+            slug=post.slug,
+            body=post.body,
+            author=post.author,
+            publish=post.publish,
+            status=post.status,
+        )
+
     def get(self, year, month, day, post):
         return get_object_or_404(
             Post,
