@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, HttpResponseNotAllowed
 

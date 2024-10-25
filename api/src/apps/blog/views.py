@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.shortcuts import render
 from .custom_view import BaseView
 
@@ -9,9 +11,11 @@ from src.domain.post.service import CommentService, PostService
 
 class PostListView(BaseView):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, *args, **kwargs):
         posts = self.post_service.get_posts_list()
         paginated_posts = self.paginate_queryset(posts)
+
+        # pprint(posts)
 
         context = {
             'posts': paginated_posts,

@@ -16,7 +16,7 @@ class IPostRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get_list(self) -> list[PostDTO]:
+    def get_posts_list(self) -> list[PostDTO]:
         pass
 
 

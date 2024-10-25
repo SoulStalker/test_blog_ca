@@ -42,8 +42,8 @@ class PostRepository(IPostRepository):
     def delete(self, pk: int) -> None:
         pass
 
-    def get_list(self) -> list[PostDTO]:
-        pass
+    def get_posts_list(self):
+        return Post.published.all()
 
 
 class CommentRepository(ICommentRepository):

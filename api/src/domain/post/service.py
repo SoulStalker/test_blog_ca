@@ -16,7 +16,7 @@ class PostService:
         self.__repository.delete(pk)
 
     def get_posts_list(self):
-        return self.__repository.get_list()
+        return self.__repository.get_posts_list()
 
 
 class CommentService:
