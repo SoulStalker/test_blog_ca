@@ -1,5 +1,5 @@
 import abc
-from api.src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
+from src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
 
 
 class IPostRepository(abc.ABC):

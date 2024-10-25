@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, HttpResponseNotAllowed
 
-from api.src.apps.blog.repository import PostRepository, CommentRepository
-from api.src.domain.post.service import PostService, CommentService
+from .repository import PostRepository, CommentRepository
+from src.domain.post.service import PostService, CommentService
 
 
 class BaseView:

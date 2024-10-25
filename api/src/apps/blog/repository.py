@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 
-from api.src.domain.post.repository import ICommentRepository, IPostRepository
-from api.src.domain.post.dtos import CommentCreateDTO, CommentDTO, PostDTO, PostCreateDTO
-from api.src.models.blog import Comment, Post
+from src.domain.post.repository import ICommentRepository, IPostRepository
+from src.domain.post.dtos import CommentCreateDTO, CommentDTO, PostDTO, PostCreateDTO
+from src.models.blog import Comment, Post
 
 
 class PostRepository(IPostRepository):

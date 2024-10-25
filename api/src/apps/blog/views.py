@@ -1,29 +1,34 @@
-from django.core.mail import send_mail
-from django.shortcuts import render, get_object_or_404
-from django.views.decorators.http import require_POST
-from django.views.generic import ListView
-# from src.models.blog import Post
+from django.shortcuts import render
+from .custom_view import BaseView
 
-from api.src.apps.blog.forms import EmailPostForm
-from api.src.apps.blog.repository import PostRepository
-from api.src.config import settings
+from src.apps.blog.repository import PostRepository
 
-from api.src.apps.blog.forms import CommentForm
-from api.src.domain.post.service import CommentService, PostService
-
-from api.src.domain.post.dtos import CommentCreateDTO, PostDTO
+from src.apps.blog.forms import CommentForm
+from src.domain.post.service import CommentService, PostService
 
 
-# from src.domain.post.service import share_post_via_email
+class PostListView(BaseView):
 
+    def get(self, request, *args, **kwargs):
+        posts = self.post_service.get_posts_list()
+        paginated_posts = self.paginate_queryset(posts)
 
-class PostListView(ListView):
-    post_service = PostService(PostRepository)
+        context = {
+            'posts': paginated_posts,
+            'pagination': {
+                "current_page": paginated_posts['current_page'],
+                "total_pages": paginated_posts['total_pages'],
+                "has_next": paginated_posts['has_next'],
+                "has_previous": paginated_posts['has_previous'],
+                "page_range": paginated_posts['page_range'],
+            }
+        }
+        return render(self.request, 'blog/post/list.html', context)
 
-    queryset = post_service.get_posts_list()
-    context_object_name = 'posts'
-    paginate_by = 3
-    template_name = 'blog/post/list.html'
+    # queryset = post_service.get_posts_list()
+    # context_object_name = 'posts'
+    # paginate_by = 3
+    # template_name = 'blog/post/list.html'
 
 
 # def post_list(request):

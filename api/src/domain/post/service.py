@@ -1,5 +1,5 @@
-from api.src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
-from api.src.domain.post.repository import IPostRepository, ICommentRepository
+from src.domain.post.dtos import PostDTO, CommentDTO, CommentCreateDTO, PostCreateDTO
+from src.domain.post.repository import IPostRepository, ICommentRepository
 
 
 class PostService:
